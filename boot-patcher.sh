@@ -128,10 +128,8 @@ determine_ramdisk_format() {
 		lz4) compress="$bin/lz4 -9" ;;
 		lz4l) compress="$bin/lz4 -9l" ;;
 		lzo) compress="lzop -9c" ;;
-		lzma) compress="$bin/xz --format=lzma --lzma1=dict=16MiB -9";
-			abort "LZMA ramdisk compression is currently unsupported" ;;
-		xz) compress="$bin/xz --check=crc32 --lzma2=dict=16MiB -9";
-			abort "XZ ramdisk compression is currently unsupported" ;;
+		lzma) compress="$bin/xz --format=lzma --lzma1=dict=16MiB -9" ;;
+		xz) compress="$bin/xz --check=crc32 --lzma2=dict=16MiB -9" ;;
 		*) abort "Unknown ramdisk compression format ($rdformat)" ;;
 	esac
 	command -v $compress || abort "Unable to find archiver for $rdformat"
